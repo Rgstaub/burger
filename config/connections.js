@@ -3,7 +3,7 @@ const mysql = require('mysql');
 // Connection to the mySql database
 const db = mysql.createConnection({
     host: "localhost",
-    name: "root",
+    user: "root",
     password: "root",
     database: "burger_db"
 })
