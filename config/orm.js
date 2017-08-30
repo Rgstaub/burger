@@ -2,21 +2,26 @@
 
 // Connect to the database
 const db = require("./connections.js");
-db.connect( (err, res) => {
-  if (err) throw err;
-  console.log(`Successfull connection to the database`);
-})
 
 let orm = {
-  // return an array of all burgers based on devoured boolean
-  selectAll: (devoured) => {
-    db.query("SELECT * FROM burgers WHERE devoured=?", devoured, (err, res) => {
+  // return all of the burgers
+  selectAll: (cb) => {
+    let queryStr = "SELECT * FROM burgers"
+    db.query(queryStr, (err, res) => {
       if (err) throw err;
-      
-    } )
+      cb(res);
+    })
   },
-  insertOne: (id) => {
-    console.log(`Burger ID ${id}`);
+  // Add a new burger to the database and return the id
+  insertOne: (name, cb) => {
+    let insertStr = "INSERT INTO burgers (burger_name) VALUES (?);"
+    db.query(insertStr, name, (err, res) => {
+      if (err) throw err;
+      db.query("SELECT LAST_INSERT_ID();", (error, response) => {
+        if (err) throw err;
+        cb(response[0]['LAST_INSERT_ID()']);
+      })
+    })
   }
 }
 

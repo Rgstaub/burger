@@ -155,7 +155,7 @@ All the recommended files and directories from the steps above should look like 
 ├── db
 │   ├── schema.sql
 │   └── seeds.sql
-│
+│m 
 ├── models
 │   └── burger.js
 │ 
