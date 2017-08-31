@@ -3,11 +3,13 @@
 // Connect to the database
 const db = require("./connections.js");
 
+//============== ORM =========================
+
 let orm = {
   // return all of the burgers
   selectAll: (cb) => {
-    let queryStr = "SELECT * FROM burgers"
-    db.query(queryStr, (err, res) => {
+    let selectStr = "SELECT * FROM burgers"
+    db.query(selectStr, (err, res) => {
       if (err) throw err;
       cb(res);
     })
@@ -18,6 +20,14 @@ let orm = {
     db.query(insertStr, name, (err, res) => {
       if (err) throw err;
     })
+  },
+  // Change a burger from uneaten to eaten
+  updateOne: (id) => {
+    let updateStr = "UPDATE burgers SET devoured=true WHERE id=?";
+    db.query(updateStr, id, (err, res) => {
+      if (err) throw err;
+    })
+
   }
 }
 

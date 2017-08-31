@@ -1,0 +1,23 @@
+.uneaten-burger {
+  width: 100px;
+}
+
+.burger-wrap {
+  position: relative;
+}
+
+.burger-text {
+  position: relative;
+  right: 500px;
+}
+
+#uneaten-box {
+  width: 45%;
+  
+}
+
+#eaten-box {
+  float: right;
+  width: 45%;
+}
+
