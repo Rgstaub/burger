@@ -32,9 +32,10 @@ router.post('/', (req, res) => {
   res.redirect("/");
 })
 
-router.post('/_put/', (req, res) => {
-  burgers.eatOne(req.body.id);
-  res.redirect("/");
+router.post('/_put/:id', (req, res) => {
+  burgers.eatOne(req.params.id, () => {
+    res.redirect('/');
+  });
 })
 
 module.exports = router;

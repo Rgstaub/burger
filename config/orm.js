@@ -22,10 +22,11 @@ let orm = {
     })
   },
   // Change a burger from uneaten to eaten
-  updateOne: (id) => {
+  updateOne: (id, cb) => {
     let updateStr = "UPDATE burgers SET devoured=true WHERE id=?";
     db.query(updateStr, id, (err, res) => {
       if (err) throw err;
+      cb();
     })
 
   }
