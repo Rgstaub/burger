@@ -1,24 +1,24 @@
 <div class="container-fluid">
   <div class="row">
     <div class="header">
-      <div id="uneaten-box">
+      <div class="col-s-6" id="uneaten-box">
         {{#each uneaten}}
-          <span class="burger-wrap" data-id="{{this.id}}" >
-            <a href="#">
-              <span class="burger_text">{{this.burger_name}}</span>
-              <img src="/assets/img/good_burger.png" class="uneaten-burger" alt="Good Burger">
-            </a>
-          </span>
+          <div class="burger-wrap col-sm-6 col-lg-4 " data-id="{{this.id}}" >
+            <div class="thumb"v>
+              <a href="">
+                <span class="burger-text">{{this.burger_name}}</span>
+                <img src="/assets/img/good_burger.png" class="uneaten-burger" alt="Good Burger">
+              </a>
+            </div>
+          </div>
         {{/each}}
       </div>
-      <div class="eaten-box">
+      <div id="eaten-box">
         {{#each eaten}}
-          <span class="burger-wrap">
-            
-              <span data-id="{{this.id}}" class="burger_text">{{this.burger_name}}</span>
-              <img src="/assets/img/gone_burger.png" alt="Gone Burger">
-            
-          </span>
+          <div class="burger-wrap col-sm-6 col-lg-4">
+            <span data-id="{{this.id}}" class="burger-text">{{this.burger_name}}</span>
+            <img src="/assets/img/gone_burger.png" class="eaten-burger" alt="Gone Burger">
+          </div>
         {{/each}}
       </div>
       <div class="input-box">

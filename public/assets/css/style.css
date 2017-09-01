@@ -1,23 +1,123 @@
+span {
+  overflow: auto;
+}
+
+
 .uneaten-burger {
-  width: 100px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.eaten-burger {
+  width: 80%;
+  margin-left: 10%;
 }
 
 .burger-wrap {
   position: relative;
+  padding: auto;
 }
 
 .burger-text {
-  position: relative;
-  right: 500px;
+  position: absolute;
+  width: 60%;
+  margin: 15%;
+  left: -5%;
+  top: 6%;
+  color: rgb(255,255,255);
 }
 
 #uneaten-box {
-  width: 45%;
-  
+  width: 50%;
+  float:left;
 }
 
 #eaten-box {
-  float: right;
-  width: 45%;
+  float: right; 
+  width: 50%;
 }
+
+ /* Copied from source: https://codepen.io/pirrera/pen/tKFhI */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+body {
+    background: rgb(95, 247, 45);
+    background: linear-gradient(rgb(2, 141, 108), rgb(50, 196, 91));
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    margin:0;
+}
+
+.thumb {
+    width: 100%;
+    height: auto;
+    margin: 70px auto;
+    perspective: 1000px;
+}
+
+.thumb a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),  */
+    background-color: rgb(27%, 80%, 93%);
+    /* url("https://media.giphy.com/media/iMcCUGuOM5j2w/giphy.gif"); */
+    background-size: 0, cover;
+    transform-style: preserve-3d;
+    transition: all 0.5s;
+}
+
+.thumb:hover a {
+    transform: rotateX(80deg);
+    transform-origin: bottom;
+}
+.thumb a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 66px;
+    background: inherit;
+    background-size: cover, cover;
+    background-position: bottom;
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+}
+.thumb a span {
+    color: white;
+    text-transform: uppercase;
+    position: absolute;
+    top: 100%;
+    left: -13%;
+    width: 100%;
+    font: bold 12px/36px "Open Sans";
+    text-align: center;
+    transform: rotateX(-89.99deg);
+    transform-origin: top;
+    z-index: 1;
+}
+.thumb a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 100px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
+    opacity: 0.15;
+    transform: rotateX(95deg) translateZ(-80px) scale(0.75);
+    transform-origin: bottom;
+}
+
+.thumb:hover a:before {
+    opacity: 1;
+    box-shadow: 0 0 25px 25px rgba(0, 0, 0, 0.5);
+    transform: rotateX(0) translateZ(-60px) scale(0.85);
+}
+
 
