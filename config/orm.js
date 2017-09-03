@@ -29,7 +29,7 @@ let orm = {
       cb();
     })
   },
-
+  // Reverts the database to its default data set
   refreshAll: () => {
     let refreshStr = `
       DROP DATABASE IF EXISTS burger_db;
@@ -49,20 +49,23 @@ let orm = {
       INSERT INTO burgers (burger_name) VALUES
         ('Classic Cheesburger'),
         ('Bacon Cheesburger'),
-        ('Bacon BBQ Burger'),
+        ('BBQ Burger'),
         ('Bacon Avacado Burger'),
         ('Mushroom Swiss Burger'),
         ('Hawaiian Burger'),
-        ('Goat Chesse and Pepper Jelly Burger')
+        ('Spinach and Goat Cheese')
       ;
     `
     db.query(refreshStr, (err, res) => {
       if (err) throw err;
     })
   },
-
+  // Deletes all devoured burgers
   clearDevoured: () => {
-    
+    let deleteStr = "DELETE FROM burgers WHERE devoured=true;"
+    db.query(deleteStr, (err, res) => {
+      if (err) throw err;
+    })
   }
 }
 

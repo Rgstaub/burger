@@ -14,6 +14,9 @@ let burgers = {
   },
   refreshAll: () => {
     orm.refreshAll();
+  },
+  clearEaten: () => {
+    orm.clearDevoured();
   }
 }
 
