@@ -32,10 +32,17 @@ router.post('/', (req, res) => {
   res.redirect("/");
 })
 
+// 'Devour' a burger of a given input
 router.post('/_put/:id', (req, res) => {
   burgers.eatOne(req.params.id, () => {
     res.redirect('/');
   });
 })
+
+router.post('/refresh', (req, res) => {
+  burgers.refreshAll();
+  res.status(201);
+})
+
 
 module.exports = router;

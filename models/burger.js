@@ -11,6 +11,9 @@ let burgers = {
   },
   eatOne: (id, cb) => {
     orm.updateOne(id, cb);
+  },
+  refreshAll: () => {
+    orm.refreshAll();
   }
 }
 

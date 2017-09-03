@@ -28,7 +28,41 @@ let orm = {
       if (err) throw err;
       cb();
     })
+  },
 
+  refreshAll: () => {
+    let refreshStr = `
+      DROP DATABASE IF EXISTS burger_db;
+
+      CREATE DATABASE burger_db;
+
+      USE burger_db;
+
+      CREATE TABLE burgers (
+        id INT(10) NOT NULL AUTO_INCREMENT,
+          burger_name VARCHAR(128) NOT NULL,
+          devoured BOOLEAN DEFAULT false,
+          date TIMESTAMP,
+          PRIMARY KEY(id)
+      );
+
+      INSERT INTO burgers (burger_name) VALUES
+        ('Classic Cheesburger'),
+        ('Bacon Cheesburger'),
+        ('Bacon BBQ Burger'),
+        ('Bacon Avacado Burger'),
+        ('Mushroom Swiss Burger'),
+        ('Hawaiian Burger'),
+        ('Goat Chesse and Pepper Jelly Burger')
+      ;
+    `
+    db.query(refreshStr, (err, res) => {
+      if (err) throw err;
+    })
+  },
+
+  clearDevoured: () => {
+    
   }
 }
 
