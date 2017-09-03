@@ -9,8 +9,8 @@ let burgers = {
   addOne: (name) => {
     orm.insertOne(name);
   },
-  eatOne: (id, cb) => {
-    orm.updateOne(id, cb);
+  eatOne: (id) => {
+    orm.updateOne(id);
   },
   refreshAll: () => {
     orm.refreshAll();

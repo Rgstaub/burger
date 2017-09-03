@@ -1,31 +1,36 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="header">
+    <div class="input-box">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Burger Name">
+        <button type="submit" class="btn btn-default">Submit</button>
+
+
+      </div>
       <button id="refreshButton" class="btn">Refresh</button>
-      <button id="clearButton" class="btn">Clear</button>
-      <div class="col-s-6" id="uneaten-box">
-        {{#each uneaten}}
-          <div class="burger-wrap col-sm-6 col-lg-4 " data-id="{{this.id}}" >
-            <div class="thumb"v>
-              <a href="">
-                <span class="burger-text">{{this.burger_name}}</span>
-                <img src="/assets/img/good_burger.png" class="uneaten-burger" alt="Good Burger">
-              </a>
-            </div>
+      <button id="clearButton" class="btn">Clear</button>  
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-s-6" id="uneaten-box">
+      {{#each uneaten}}
+        <div class="burger-wrap col-sm-6 col-lg-4 " data-id="{{this.id}}" >
+          <div class="thumb"v>
+            <a href="">
+              <span class="burger-text">{{this.burger_name}}</span>
+              <img src="/assets/img/good_burger.png" class="uneaten-burger" alt="Good Burger">
+            </a>
           </div>
-        {{/each}}
-      </div>
-      <div id="eaten-box">
-        {{#each eaten}}
-          <div class="burger-wrap col-sm-6 col-lg-4">
-            <span data-id="{{this.id}}" class="burger-text">{{this.burger_name}}</span>
-            <img src="/assets/img/gone_burger.png" class="eaten-burger" alt="Gone Burger">
-          </div>
-        {{/each}}
-      </div>
-      <div class="input-box">
-        
-      </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class="col-s-6" id="eaten-box">
+      {{#each eaten}}
+        <div class="burger-wrap col-sm-6 col-lg-4">
+          <span data-id="{{this.id}}" class="burger-text">{{this.burger_name}}</span>
+          <img src="/assets/img/gone_burger.png" class="eaten-burger" alt="Gone Burger">
+        </div>
+      {{/each}}
     </div>
   </div>
 </div>
