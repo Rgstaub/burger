@@ -12,10 +12,10 @@
   <div class="row">
     <div class="col-s-6" id="uneaten-box">
       {{#each uneaten}}
-        <div class="burger clickable col-sm-6 col-lg-4 " data-id="{{this.id}}" >
+        <div class="burger col-sm-6 col-lg-4 "  >
           <div class="thumb"v>
-            <a href="">
-              <span class="burger-text">
+     
+           
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{this.burger_name}}
                     <span class="caret"></span>
@@ -36,9 +36,9 @@
                   <p>{{this.tomatos}}</p>
                   <p>{{this.bacon}}</p>
                 </div> --}}
-              </span>
-              <img src="/assets/img/good_burger.png" class="uneaten-burger" alt="Good Burger">
-            </a>
+         
+              <img src="/assets/img/good_burger.png" class="uneaten-burger clickable" data-id="{{this.id}}" alt="Good Burger">
+        
           </div>
         </div>
       {{/each}}
