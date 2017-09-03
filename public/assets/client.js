@@ -1,7 +1,7 @@
 
 
 // create an on click event
-$(document).on('click', '.burger-wrap', function() {
+$(document).on('click', '.clickable', function() {
   event.preventDefault();
   var id = $(this).data("id");
   // Post with a path that gives the Burger ID as a parameter ("/:id")
@@ -19,5 +19,4 @@ $(document).on('click', '#clearButton', function() {
   $.post('/clear/');
   location.reload();
 })
-
 

@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(55, 200, 135);
+}
+
 span {
   overflow: auto;
 }
@@ -13,7 +17,7 @@ span {
   margin-left: 10%;
 }
 
-.burger-wrap {
+.burger {
   position: relative;
   padding: auto;
 }

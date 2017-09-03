@@ -9,6 +9,19 @@ CREATE TABLE burgers (
     burger_name VARCHAR(128) NOT NULL,
     devoured BOOLEAN DEFAULT false,
     date TIMESTAMP,
+
+    pickles BOOLEAN DEFAULT false,
+    ketchup BOOLEAN DEFAULT false,
+    patty VARCHAR(128) DEFAULT "Beef",
+    mustard BOOLEAN DEFAULT false,
+    onions BOOLEAN DEFAULT false,
+    cheese BOOLEAN DEFAULT false,
+    bacon BOOLEAN DEFAULT false,
+    lettuce BOOLEAN DEFAULT false,
+
+
+
+
     PRIMARY KEY(id)
 )
     
