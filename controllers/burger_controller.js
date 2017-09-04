@@ -43,7 +43,7 @@ router.get('/ingredients', (req, res) => {
 
 router.post('/', (req, res) => {
   // Create a new burger using the new Burger name
-  burgers.addOne(req.body.name);
+  burgers.addOne(req.body);
   // Redirect to home to re-render the page
   res.redirect("/");
 })

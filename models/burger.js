@@ -6,8 +6,8 @@ let burgers = {
   getAll: (cb) => {
     orm.selectAll(cb);
   },
-  addOne: (name) => {
-    orm.insertOne(name);
+  addOne: (newBurger) => {
+    orm.insertOne(newBurger);
   },
   eatOne: (id) => {
     orm.updateOne(id);

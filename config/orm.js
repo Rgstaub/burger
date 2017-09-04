@@ -15,9 +15,22 @@ let orm = {
     })
   },
   // Add a new burger to the database and return the id
-  insertOne: (name) => {
-    let insertStr = "INSERT INTO burgers (burger_name) VALUES (?);"
-    db.query(insertStr, name, (err, res) => {
+  insertOne: (burger) => {
+    // Make an array of the keys of the burger object
+    let burgerKeys = Object.keys(burger);
+    // Create the parameter string for the mySQL query
+    let keysStr = `(${Object.keys(burger).toString()})`;
+    console.log(burgerKeys);
+
+    let burgerValues = [];
+    burgerKeys.forEach((key) => {
+      if (burger[key] === 'true') burgerValues.push(true);
+      else burgerValues.push(burger[key]);
+    })
+    let valuesStr = `(${burgerValues.toString()})`;
+    console.log(burgerValues);
+    let insertStr = "INSERT INTO burgers ?  VALUES ?;"
+    db.query(insertStr, [burgerKeys, burgerValues], (err, res) => {
       if (err) throw err;
     })
   },
