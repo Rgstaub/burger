@@ -2,7 +2,9 @@ body {
     background-color: rgb(55, 200, 135);
 }
 
-
+li {
+    margin: 5px 15px 5px 15px;
+}
 
 .uneaten-burger {
   width: 80%;

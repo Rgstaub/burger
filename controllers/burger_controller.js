@@ -30,6 +30,17 @@ router.get('/', (req, res) => {
   });
 })
 
+router.get('/ingredients', (req, res) => {
+  burgers.getAll((response) => {
+    let burgerArr = [];
+    response.forEach((burger) => {
+      burger.ingredients = setIngredients(burger);
+      burgerArr.push(burger);
+    })
+    res.send(burgerArr);
+  })
+})
+
 router.post('/', (req, res) => {
   // Create a new burger using the new Burger name
   burgers.addOne(req.body.name);
@@ -53,39 +64,33 @@ router.post('/clear/', (req, res) => {
   res.status(201);
 })
 
-router.get('/ingredients', (req, res) => {
-  burgers.getAll((response) => {
-    let burgerArr = [];
-    response.forEach((burger) => {
-      burger.ingredients = setIngredients(burger);
-      burgerArr.push(burger);
-    })
-    res.send(burgerArr);
-  })
-})
-
 module.exports = router;
 
-//================== Functions ================================
-
+//================== Functions ========================
 
 let setIngredients = (burger) => {
+  // This will be an array with a formatted list of ingredients
   let ingredientArr = [];
+  // Get an array of keys to loop over
   let keys = Object.keys(burger);
+  // Skip the first four values that are not ingredients
   for (let i = 4; i < keys.length; i ++) {
+    // Set variables for readability
     let ingKey = keys[i];
     let ingValue = burger[keys[i]];
+    // If it is a non-boolean value (patties and buns), add it to the
+    // ingredient array
     if (ingValue !== 0 && ingValue !== 1 && ingValue !== null) {
+      // Add some displaay text to the bun and patty values
+      if (i === 4) ingValue += " Bun";
+      if (i === 5) ingValue += " Patty";
       ingredientArr.push(ingValue);
     } 
+    // If it is true, add the key with some formatting to the array
     else if (ingValue === 1) {
       let capIng = ingKey.charAt(0).toUpperCase() + ingKey.slice(1);
       ingredientArr.push(capIng);
     }
   }
-  // ingredientArr.push(burger.patty);
-  // ingredientArr.push(burger.bun);
-  // if (burger.pickes) ingredientArr.push("Pickles");
-  
   return ingredientArr;
 }
