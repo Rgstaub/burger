@@ -54,30 +54,31 @@ router.post('/clear/', (req, res) => {
 })
 
 router.get('/ingredients', (req, res) => {
-  let topArr = [];
-  return new Promise(() => {
-    burgers.getAll((response) => {
+  burgers.getAll((response) => {
     let burgerArr = [];
     response.forEach((burger) => {
       burger.ingredients = setIngredients(burger);
       burgerArr.push(burger);
     })
-    return burgerArr;
-  }).then((bArr) => {
-    console.log(bArr);
-    res.json(bArr);
+    res.send(burgerArr);
   })
 })
 
+module.exports = router;
+
+//================== Functions ================================
+
+
 let setIngredients = (burger) => {
-  let ingredientArr = []
+  let ingredientArr = [];
   let keys = Object.keys(burger);
   for (let i = 4; i < keys.length; i ++) {
     let ingKey = keys[i];
     let ingValue = burger[keys[i]];
     if (ingValue !== 0 && ingValue !== 1 && ingValue !== null) {
       ingredientArr.push(ingValue);
-    } else if (ingValue === 1) {
+    } 
+    else if (ingValue === 1) {
       let capIng = ingKey.charAt(0).toUpperCase() + ingKey.slice(1);
       ingredientArr.push(capIng);
     }
@@ -85,8 +86,6 @@ let setIngredients = (burger) => {
   // ingredientArr.push(burger.patty);
   // ingredientArr.push(burger.bun);
   // if (burger.pickes) ingredientArr.push("Pickles");
-  return ingredientArr;
   
+  return ingredientArr;
 }
-
-module.exports = router;

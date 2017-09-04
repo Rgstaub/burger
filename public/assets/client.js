@@ -6,7 +6,13 @@
 $(document).ready(() => {
 
   $.get("/ingredients", function(response) {
-    console.log(response);
+    response.forEach( function(burger) {
+      burger.ingredients.forEach( function(ingredient) {
+        var element = $('<li role="presentation"></li>');
+        element.text(ingredient);
+        $(`#${burger.id}`).append(element);
+      })
+    })
   })
 
     // create an on click event
