@@ -6,10 +6,9 @@ USE burger_db;
 
 CREATE TABLE burgers (
 	id INT(10) NOT NULL AUTO_INCREMENT,
-    burger_name VARCHAR(128) NOT NULL,
-    devoured BOOLEAN DEFAULT false,
     date TIMESTAMP,
-
+    devoured BOOLEAN DEFAULT false,
+    burger_name VARCHAR(128) NOT NULL,
     pickles BOOLEAN DEFAULT false,
     ketchup BOOLEAN DEFAULT false,
     patty VARCHAR(128) DEFAULT "Beef",
@@ -18,10 +17,6 @@ CREATE TABLE burgers (
     cheese BOOLEAN DEFAULT false,
     bacon BOOLEAN DEFAULT false,
     lettuce BOOLEAN DEFAULT false,
-
-
-
-
     PRIMARY KEY(id)
 )
     

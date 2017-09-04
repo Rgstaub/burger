@@ -12,34 +12,24 @@
   <div class="row">
     <div class="col-s-6" id="uneaten-box">
       {{#each uneaten}}
-        <div class="burger col-sm-6 col-lg-4 "  >
-          <div class="thumb"v>
-     
-           
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{this.burger_name}}
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.patty}}</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.bun}}</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-                  </ul>
-                </div>
-                {{!-- <h4>{{this.burger_name}}</h4>
-                <div>
-                  <p>{{this.patty}}</p>
-                  <p>{{this.bun}}</p>
-                  <p>{{this.pickles}}</p>
-                  <p>{{this.lettuce}}</p>
-                  <p>{{this.tomatos}}</p>
-                  <p>{{this.bacon}}</p>
-                </div> --}}
-         
-              <img src="/assets/img/good_burger.png" class="uneaten-burger clickable" data-id="{{this.id}}" alt="Good Burger">
-        
+        <div class="burger col-sm-6 col-lg-4">
+          <div>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{this.burger_name}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu ingredient-dropdown" id="{{this.id}}" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.ingredients.[0]}}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.ingredients.[1]}}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.ingredients.[2]}}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.ingredients.[3]}}</a></li> 
+              </ul>
+            </div>
           </div>
+            <a>  
+              <img src="/assets/img/good_burger.png" class="uneaten-burger clickable" data-id="{{this.id}}" alt="Good Burger">
+            </a>  
+          
         </div>
       {{/each}}
     </div>
