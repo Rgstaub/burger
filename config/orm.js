@@ -19,22 +19,13 @@ let orm = {
     // Make an array of the keys of the burger object
     let burgerKeys = Object.keys(burger);
     // Create the parameter string for the mySQL query
-    let keysStr = `(${Object.keys(burger).toString()})`;
-    console.log(keysStr);
-
     let burgerValues = [];
     burgerKeys.forEach((key) => {
       if (burger[key] === 'true') burgerValues.push(true);
       else burgerValues.push(burger[key]);
     })
-    let valueObj = {
-      burger_name: "Fatty Melt",
-      pickles: true
-    }
-    let valuesStr = `(${burgerValues.toString()})`;
-    console.log(valuesStr);
-    let insertStr = "INSERT INTO burgers (burger_name, pickles)  VALUES ?;"
-    db.query(insertStr, valueObj, (err, res) => {
+    let insertStr = "INSERT INTO burgers (??) VALUES (?);"
+    db.query(insertStr, [burgerKeys, burgerValues], (err, res) => {
       if (err) throw err;
     })
   },
@@ -85,6 +76,14 @@ let orm = {
     let deleteStr = "DELETE FROM burgers WHERE devoured=true;"
     db.query(deleteStr, (err, res) => {
       if (err) throw err;
+    })
+  },
+
+  filteredSelect: (columns, values) => {
+    let filterStr = "SELECT * FROM burgers WHERE ?? = ?";
+    db.query(filterStr, [columns, values], (err, res) => {
+      if (err) throw err;
+      console.log(res);
     })
   }
 }

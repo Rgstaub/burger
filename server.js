@@ -26,18 +26,3 @@ app.set("view engine", "handlebars");
 app.listen(3000, () => {
   console.log(`Listening on port ${PORT}`);
 })
-
-
-// Testing area
-// const burger = require('./models/burger.js')
-// let myBurger = new burger("chezberger");
-
-// myBurger.q.selectAll(function(data) {
-//   data.forEach( (burger) => {
-//     console.log(burger.burger_name);
-//   })
-// });
-
-// myBurger.q.insertOne("Whopper", function(response) {
-//   console.log(`Burger ID# ${response} created`);
-// });

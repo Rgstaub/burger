@@ -6,6 +6,9 @@ let burgers = {
   getAll: (cb) => {
     orm.selectAll(cb);
   },
+  getSome: (columns, values, cb) => {
+    orm.filteredSelect(columns, values, cb)
+  },
   addOne: (newBurger) => {
     orm.insertOne(newBurger);
   },

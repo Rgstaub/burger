@@ -2,32 +2,41 @@
 
 // Create the router
 const express = require('express');
-let router = express.Router();
+const router = express.Router();
 
-// Import express and the Burger constructor
+// Import the Burger constructor
 const burgers = require('../models/burger.js')
 
-//============== Routes ===================
+//=========================== Routes ==================================
 
 router.get('/', (req, res) => {
-  
   // Get all the burger data
   burgers.getAll(response => {
     // divide it into devoured and not devoured arrays
-    //res.json(response);
     let available = [];
     let unavailable = [];
     response.forEach(burger => {
-      let burgerIngredients = setIngredients(burger);
-      burger.ingredients = burgerIngredients;
-
       if (burger.devoured) unavailable.push(burger);
       else available.push(burger);
     })
-
     // Send it to handlebars to render
     res.render('index', { "uneaten": available, "eaten": unavailable })
   });
+  
+  
+  // let columns = ['pickles', 'cheese'];
+  // let values = [true, false];
+  // burgers.getSome(columns, values, response => {
+  //   // divide it into devoured and not devoured arrays
+  //   let available = [];
+  //   let unavailable = [];
+  //   response.forEach(burger => {
+  //     if (burger.devoured) unavailable.push(burger);
+  //     else available.push(burger);
+  //   })
+  //   // Send it to handlebars to render
+  //   res.render('index', { "uneaten": available, "eaten": unavailable })
+  // });
 })
 
 router.get('/ingredients', (req, res) => {
@@ -54,11 +63,13 @@ router.post('/_put/:id', (req, res) => {
   res.status(201);
 })
 
+// Reset all the burger values to the default
 router.post('/refresh', (req, res) => {
   burgers.refreshAll();
   res.status(201);
 })
 
+// Delete all rows where devoured=true
 router.post('/clear/', (req, res) => {
   burgers.clearEaten();
   res.status(201);
@@ -66,7 +77,7 @@ router.post('/clear/', (req, res) => {
 
 module.exports = router;
 
-//================== Functions ========================
+//========================= Functions ============================
 
 let setIngredients = (burger) => {
   // This will be an array with a formatted list of ingredients
@@ -92,5 +103,6 @@ let setIngredients = (burger) => {
       ingredientArr.push(capIng);
     }
   }
+  // return the completed array of ingredients
   return ingredientArr;
 }

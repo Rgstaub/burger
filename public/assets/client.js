@@ -1,8 +1,4 @@
 
-
-
-
-
 $(document).ready(() => {
 
   $.get("/ingredients", function(response) {
