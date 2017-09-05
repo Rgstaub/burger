@@ -20,17 +20,21 @@ let orm = {
     let burgerKeys = Object.keys(burger);
     // Create the parameter string for the mySQL query
     let keysStr = `(${Object.keys(burger).toString()})`;
-    console.log(burgerKeys);
+    console.log(keysStr);
 
     let burgerValues = [];
     burgerKeys.forEach((key) => {
       if (burger[key] === 'true') burgerValues.push(true);
       else burgerValues.push(burger[key]);
     })
+    let valueObj = {
+      burger_name: "Fatty Melt",
+      pickles: true
+    }
     let valuesStr = `(${burgerValues.toString()})`;
-    console.log(burgerValues);
-    let insertStr = "INSERT INTO burgers ?  VALUES ?;"
-    db.query(insertStr, [burgerKeys, burgerValues], (err, res) => {
+    console.log(valuesStr);
+    let insertStr = "INSERT INTO burgers (burger_name, pickles)  VALUES ?;"
+    db.query(insertStr, valueObj, (err, res) => {
       if (err) throw err;
     })
   },
@@ -55,7 +59,6 @@ let orm = {
         patty VARCHAR(128) DEFAULT "Beef",
         pickles BOOLEAN DEFAULT false,
         ketchup BOOLEAN DEFAULT false,
-
         mustard BOOLEAN DEFAULT false,
         onions BOOLEAN DEFAULT false,
         cheese BOOLEAN DEFAULT false,
@@ -85,8 +88,6 @@ let orm = {
     })
   }
 }
-
-
 
 // Ship it
 module.exports = orm;
