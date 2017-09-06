@@ -2,7 +2,7 @@
 
 // Set up the app
 const express = require('express');
-let app = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.static("public"));
 

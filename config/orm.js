@@ -3,7 +3,7 @@
 // Connect to the database
 const db = require("./connections.js");
 
-//============== ORM =========================
+//=====================| ORM |==========================
 
 let orm = {
   // return all of the burgers
@@ -79,14 +79,31 @@ let orm = {
     })
   },
 
-  filteredSelect: (columns, values) => {
-    let filterStr = "SELECT * FROM burgers WHERE ?? = ?";
+  filteredSelect: (columns, values, cb) => {
+    let filterStr = filterBuilder(columns, values);
     db.query(filterStr, [columns, values], (err, res) => {
       if (err) throw err;
-      console.log(res);
+      cb(res);
     })
   }
 }
+
+let filterBuilder = (cols, vals) => {
+  let query = "SELECT * FROM burgers WHERE ";
+  for (let i = 0; i < cols.length; i++) {
+    if (i === 0) { 
+      var subStr = `${cols[i]}=${vals[i]} `; 
+    }
+    else { 
+      var subStr = `AND ${cols[i]}=${vals[i]} `; 
+    }
+    query += subStr;
+  }
+  query += ";";
+  console.log(query);
+  return query;
+}
+
 
 // Ship it
 module.exports = orm;

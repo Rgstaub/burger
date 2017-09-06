@@ -11,22 +11,8 @@ const burgers = require('../models/burger.js')
 
 router.get('/', (req, res) => {
   // Get all the burger data
+
   burgers.getAll(response => {
-    // divide it into devoured and not devoured arrays
-    let available = [];
-    let unavailable = [];
-    response.forEach(burger => {
-      if (burger.devoured) unavailable.push(burger);
-      else available.push(burger);
-    })
-    // Send it to handlebars to render
-    res.render('index', { "uneaten": available, "eaten": unavailable })
-  });
-  
-  
-  // let columns = ['pickles', 'cheese'];
-  // let values = [true, false];
-  // burgers.getSome(columns, values, response => {
   //   // divide it into devoured and not devoured arrays
   //   let available = [];
   //   let unavailable = [];
@@ -37,6 +23,23 @@ router.get('/', (req, res) => {
   //   // Send it to handlebars to render
   //   res.render('index', { "uneaten": available, "eaten": unavailable })
   // });
+  
+  
+  // let columns = ['mustard', 'ketchup'];
+  // let values = [true, true];
+  // burgers.getSome(columns, values, response => {
+    // divide it into devoured and not devoured arrays
+    // let available = [];
+    // let unavailable = [];
+    // response.forEach(burger => {
+    //   if (burger.devoured) unavailable.push(burger);
+    //   else available.push(burger);
+    // })
+    let sortedBurgers = seperateEaten(response);
+    // console.log(stuff);
+    // Send it to handlebars to render
+    res.render('index', sortedBurgers);
+  })
 })
 
 router.get('/ingredients', (req, res) => {
@@ -48,6 +51,14 @@ router.get('/ingredients', (req, res) => {
     })
     res.send(burgerArr);
   })
+})
+
+router.get('/filter', (req, res) => {
+  //res.send(req);
+  console.log(req);
+  //burgers.getSome( (keys, values, response => {
+
+  // }))
 })
 
 router.post('/', (req, res) => {
@@ -80,7 +91,7 @@ module.exports = router;
 //========================= Functions ============================
 
 let setIngredients = (burger) => {
-  // This will be an array with a formatted list of ingredients
+  // This will be an array with a formatted list of ingredients to be returned
   let ingredientArr = [];
   // Get an array of keys to loop over
   let keys = Object.keys(burger);
@@ -92,7 +103,7 @@ let setIngredients = (burger) => {
     // If it is a non-boolean value (patties and buns), add it to the
     // ingredient array
     if (ingValue !== 0 && ingValue !== 1 && ingValue !== null) {
-      // Add some displaay text to the bun and patty values
+      // Add some display text to the bun and patty values
       if (i === 4) ingValue += " Bun";
       if (i === 5) ingValue += " Patty";
       ingredientArr.push(ingValue);
@@ -105,4 +116,18 @@ let setIngredients = (burger) => {
   }
   // return the completed array of ingredients
   return ingredientArr;
+}
+
+// Get the results of a query and divide it into arrays by 'devoured' status
+// for display in the DOM
+let seperateEaten = (burgers) => {
+  // divide it into devoured and not devoured arrays
+  let available = [];
+  let unavailable = [];
+  burgers.forEach(burger => {
+    if (burger.devoured) unavailable.push(burger);
+    else available.push(burger);
+  })
+  let burgerObj = {'uneaten': available, 'eaten': unavailable};
+  return burgerObj;
 }
