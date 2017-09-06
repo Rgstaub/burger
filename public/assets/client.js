@@ -16,7 +16,7 @@ $(document).ready(() => {
     })
   })
 
-    // create an on click event
+  // create an on click event for the burger image to 'eat' a burger
   $(document).on('click', '.clickable', function() {
     event.preventDefault();
     var id = $(this).data("id");
