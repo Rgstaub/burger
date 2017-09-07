@@ -13,30 +13,8 @@ router.get('/', (req, res) => {
   // Get all the burger data
 
   burgers.getAll(response => {
-  //   // divide it into devoured and not devoured arrays
-  //   let available = [];
-  //   let unavailable = [];
-  //   response.forEach(burger => {
-  //     if (burger.devoured) unavailable.push(burger);
-  //     else available.push(burger);
-  //   })
-  //   // Send it to handlebars to render
-  //   res.render('index', { "uneaten": available, "eaten": unavailable })
-  // });
-  
-  
-  // let columns = ['mustard', 'ketchup'];
-  // let values = [true, true];
-  // burgers.getSome(columns, values, response => {
     // divide it into devoured and not devoured arrays
-    // let available = [];
-    // let unavailable = [];
-    // response.forEach(burger => {
-    //   if (burger.devoured) unavailable.push(burger);
-    //   else available.push(burger);
-    // })
     let sortedBurgers = seperateEaten(response);
-    // console.log(stuff);
     // Send it to handlebars to render
     res.render('index', sortedBurgers);
   })

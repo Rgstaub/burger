@@ -56,11 +56,11 @@ $(document).ready(() => {
     // parent: "input-box", 
     // name: "add"
     // }
-  const formBuilder = function(header) {
-    let formContainer = $(`<form action="${header.action}" method="${header.method}" class="form-inline"></form>`)
+  const formBuilder = function(settings) {
+    let formContainer = $(`<form action="${settings.action}" method="${settings.method}" class="form-inline"></form>`)
     FORM.forEach((ingredient) => {
       let formatted = ingredient.charAt(0).toUpperCase() + ingredient.substring(1);
-      if (ingredient === 'burger_name' && header.type === 'input') {
+      if (ingredient === 'burger_name' && settings.type === 'input') {
         let burger_name = formatted.replace('_', ' ');
         let formSegment = $(`
         <div class="form-group">
@@ -70,7 +70,7 @@ $(document).ready(() => {
         </div> `);
         formContainer.append(formSegment);
       }
-      if (ingredient === 'patty') {
+      else if (ingredient === 'patty') {
         let formSegment = $(`
         <div class="form-group">
           <label for="${ingredient}-input">${formatted}</label>
@@ -96,13 +96,19 @@ $(document).ready(() => {
       } else {
         let formSegment = $(`
         <div class="form-group">
-          <label for="pickles-input">Pickles</label>
-          <input type="checkbox" name="pickles" id="pickles-input" class="form-control" value="true">
+          <label for="${ingredient}-input">${formatted}</label>
+          <input type="checkbox" name="${ingredient}" id="${ingredient}-input" class="form-control" value="true">
         </div>`);
         formContainer.append(formSegment);   
       }
-      $(`#${header.parent}`).append(formContainer);  
     })
+      let submitButton = $(`
+      <button id="${settings.name}Button" class="btn">${settings.name}</button>
+      `);
+    
+      formContainer.append(submitButton);
+      $(`#${settings.parent}`).append(formContainer);  
+    
   }
 
   formBuilder({
