@@ -38,11 +38,11 @@ $(document).ready(() => {
     location.reload();
   })
 
-  $(document).on('click', '#filterButton', function() {
-    event.preventDefault();
-    var url = urlBuilder();
-    $.post('/filter')
-  })
+  // $(document).on('click', '#filterButton', function() {
+  //   event.preventDefault();
+  //   var url = urlBuilder();
+  //   $.post('/filter')
+  // })
 
   const urlBuilder = function() {
     return console.log(`this will eventually return a URL for post`);
@@ -70,6 +70,7 @@ $(document).ready(() => {
         </div> `);
         formContainer.append(formSegment);
       }
+      else if (ingredient === 'burger_name' && settings.type === 'filter') return;
       else if (ingredient === 'patty') {
         let formSegment = $(`
         <div class="form-group">
@@ -93,7 +94,17 @@ $(document).ready(() => {
           </select>
         </div> `);
         formContainer.append(formSegment);
-      } else {
+      } else if (ingredient === "special" && settings.type === "input") {
+        let formSegment = $(`
+        <div class="form-group">
+          <label for="${ingredient}-input">${formatted}</label>
+          <input type="text" name="${ingredient}" id="${ingredient}-input" class="form-control">
+          </select>
+        </div> `);
+        formContainer.append(formSegment);
+      }
+      
+      else {
         let formSegment = $(`
         <div class="form-group">
           <label for="${ingredient}-input">${formatted}</label>
@@ -103,7 +114,7 @@ $(document).ready(() => {
       }
     })
       let submitButton = $(`
-      <button id="${settings.name}Button" class="btn">${settings.name}</button>
+      <button id="${settings.name}Button" type="submit" class="btn">${settings.name}</button>
       `);
     
       formContainer.append(submitButton);
@@ -118,4 +129,12 @@ $(document).ready(() => {
     parent: "input-box", 
     name: "add"
   });
+
+  formBuilder({
+    action: "/filter",
+    method: "post",
+    type: "filter",
+    parent: "input-box",
+    name: "filter"
+  })
 })

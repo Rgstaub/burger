@@ -31,9 +31,9 @@ router.get('/ingredients', (req, res) => {
   })
 })
 
-router.get('/filter', (req, res) => {
+router.post('/filter', (req, res) => {
   //res.send(req);
-  console.log(req);
+  console.log(req.body);
   //burgers.getSome( (keys, values, response => {
 
   // }))
