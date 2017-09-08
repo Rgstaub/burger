@@ -32,11 +32,16 @@ router.get('/ingredients', (req, res) => {
 })
 
 router.post('/filter', (req, res) => {
-  //res.send(req);
-  console.log(req.body);
-  //burgers.getSome( (keys, values, response => {
+  let values = [];
+  let keys = Object.keys(req.body);
+  keys.forEach(key => {
+    values.push(req.body[key]);
+  })
 
-  // }))
+  burgers.getSome(keys, values, response => {
+    let sortedBurgers = seperateEaten(response);
+    res.render('index', sortedBurgers);
+  })
 })
 
 router.post('/', (req, res) => {
@@ -59,7 +64,7 @@ router.post('/refresh', (req, res) => {
 })
 
 // Delete all rows where devoured=true
-router.post('/clear/', (req, res) => {
+router.post('/clear', (req, res) => {
   burgers.clearEaten();
   res.status(201);
 })

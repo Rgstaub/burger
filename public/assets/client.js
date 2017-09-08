@@ -71,7 +71,7 @@ $(document).ready(() => {
         formContainer.append(formSegment);
       }
       else if (ingredient === 'burger_name' && settings.type === 'filter') return;
-      else if (ingredient === 'patty') {
+      else if (ingredient === 'patty' && settings.type === 'input') {
         let formSegment = $(`
         <div class="form-group">
           <label for="${ingredient}-input">${formatted}</label>
@@ -83,11 +83,37 @@ $(document).ready(() => {
         </div> `);
         formContainer.append(formSegment);
       }
-      else if (ingredient === 'bun') {
+      else if (ingredient === 'patty' && settings.type === 'filter') {
         let formSegment = $(`
         <div class="form-group">
           <label for="${ingredient}-input">${formatted}</label>
           <select name="${ingredient}" id="${ingredient}-input" class="form-control">
+            <option selected='selected'>No Selection</default>
+            <option value="Beef">Beef</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Veggie">Veggie</option>
+          </select>
+        </div> `);
+        formContainer.append(formSegment);
+      }
+      else if (ingredient === 'bun' && settings.type === 'input') {
+        let formSegment = $(`
+        <div class="form-group">
+          <label for="${ingredient}-input">${formatted}</label>
+          <select name="${ingredient}" id="${ingredient}-input" class="form-control">
+            <option value="Sesame-Seed">Sesame-Seed</option>
+            <option value="Whole Wheat">Whole Wheat</option>
+            <option value="Brioche">Brioche</option>
+          </select>
+        </div> `);
+        formContainer.append(formSegment);
+      }
+      else if (ingredient === 'bun' && settings.type === 'filter') {
+        let formSegment = $(`
+        <div class="form-group">
+          <label for="${ingredient}-input">${formatted}</label>
+          <select name="${ingredient}" id="${ingredient}-input" class="form-control">
+            <option selected='selected'>No Selection</option>
             <option value="Sesame-Seed">Sesame-Seed</option>
             <option value="Whole Wheat">Whole Wheat</option>
             <option value="Brioche">Brioche</option>

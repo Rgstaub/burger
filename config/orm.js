@@ -65,7 +65,7 @@ let orm = {
         ('Turkey Burger', "Whole Wheat", "Turkey", true, false, true, true, false, true, false, true, null),
         ('Bacon Avacado Burger', "Whole Wheat", "Beef", false, false, true, true, false, true, true, false, "Avacado"),
         ('Mushroom Swiss Burger', "Brioche", "Beef", false, false, false, true, true, false, false, false, "Mushrooms"),
-        ('Hawaiian Burger', "Sesame", "Beef", false, true, true, true, true, false, true, false, "Pineapple"),
+        ('Hawaiian Burger', "Sesame-Seed", "Beef", false, true, true, true, true, false, true, false, "Pineapple"),
         ('Veggie Burger', "Whole Wheat", "Veggie", false, true, true, true, true, true, false, true, null);`;
     db.query(refreshStr, (err, res) => {
       if (err) throw err;
@@ -81,8 +81,9 @@ let orm = {
 
   filteredSelect: (columns, values, cb) => {
     let filterStr = filterBuilder(columns, values);
-    db.query(filterStr, [columns, values], (err, res) => {
+    db.query(filterStr, (err, res) => {
       if (err) throw err;
+      console.log(res);
       cb(res);
     })
   }
@@ -91,13 +92,26 @@ let orm = {
 let filterBuilder = (cols, vals) => {
   let query = "SELECT * FROM burgers WHERE ";
   for (let i = 0; i < cols.length; i++) {
-    if (i === 0) { 
-      var subStr = `${cols[i]}=${vals[i]} `; 
+    if (vals[i] !== 'No Selection') {
+      if (i === 0 || query === "SELECT * FROM burgers WHERE ") { 
+        if (vals[i] === 'true') {
+          console.log("DING");
+          var subStr = `${cols[i]}=${1} `;
+        } else {
+          var subStr = `${cols[i]}='${vals[i]}' `
+        }
+      }
+      else {
+        console.log(vals[i]);
+        if (vals[i] === 'true') {
+          console.log("DING");
+          var subStr = `AND ${cols[i]}=${1} `;
+        } else {
+          var subStr = `AND ${cols[i]}='${vals[i]}' `
+        }
+      }
+      query += subStr;
     }
-    else { 
-      var subStr = `AND ${cols[i]}=${vals[i]} `; 
-    }
-    query += subStr;
   }
   query += ";";
   console.log(query);
