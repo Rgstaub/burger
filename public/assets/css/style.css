@@ -101,6 +101,10 @@ h1 {
     
 }
 
+.ingredient-dropdown {
+    margin-left: 30px;
+}
+
 #uneaten-box {
   width: 50%;
   float:left;
@@ -166,6 +170,5 @@ h1 {
     overflow:auto;
     border-radius: 15px;
     text-align: center;
-
     box-shadow: 0px 0px 2px #999;
 }

@@ -7,6 +7,10 @@ let burgers = {
     orm.selectAll(cb);
   },
   getSome: (columns, values, cb) => {
+    // Prevent an empty filter form from being submitted
+    if (columns.length === 2 && 
+        values[0] === "No Selection" && 
+        values[1] === "No Selection") return;
     orm.filteredSelect(columns, values, cb)
   },
   addOne: (newBurger) => {
