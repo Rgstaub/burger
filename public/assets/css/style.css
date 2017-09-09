@@ -1,13 +1,50 @@
+/* 
+font-family: 'Raleway', sans-serif;
+font-family: 'Chewy', cursive;
+font-family: 'Bangers', cursive;
+font-family: 'Love Ya Like A Sister', cursive;
+font-family: 'Bubblegum Sans', cursive; 
+*/
+
+
 body {
-    background-color: rgb(55, 200, 135);
+    background-color: rgb(118, 224, 176);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.8em;
+    color: #222;
+}
+
+label {
+    margin: 5px;
 }
 
 li {
     margin: 5px 15px 5px 15px;
 }
 
+h2 {
+    text-align: center;
+}
+
+h1 {
+    line-height: 200px;
+    margin-top: 10px;
+    font-size: 3em;
+    margin-left: 30px;
+    font-family: 'Chewy', cursive;
+    color: rgb(196, 29, 73);
+
+
+}
+
+.hidden {
+    display: none;
+}
+
 .uneaten-burger {
-  width: 80%;
+  width: 50%;
+  margin: auto;
+   display: block;
 }
 
 .form-group {
@@ -15,13 +52,30 @@ li {
 }
 
 .eaten-burger {
-  width: 80%;
+  width: 50%;
+    margin: auto;
+ display: block;
+
 }
 
 .burger {
   position: relative;
   padding: auto;
 }
+
+.burger-label {
+    line-height: auto;
+    overflow: visible;
+    margin-bottom: 20px;
+}
+
+.btn.btn-lg {
+    width: 50%;
+    margin-left: 25%;
+    display: block;
+}
+
+
 
 .burger-text {
   position: absolute;
@@ -30,6 +84,21 @@ li {
   left: -5%;
   top: 6%;
   color: rgb(255,255,255);
+}
+
+.centered {
+ text-align: center;
+ font-size: 2em;
+} 
+
+.container-fluid {
+    margin-bottom: 100px;
+}
+
+.dock {
+    position: fixed;
+    top: -7px;
+    
 }
 
 #uneaten-box {
@@ -42,87 +111,61 @@ li {
   width: 50%;
 }
 
- /* Copied from source: https://codepen.io/pirrera/pen/tKFhI */
-/*  
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-
-body {
-    background: rgb(95, 247, 45);
-    background: linear-gradient(rgb(2, 141, 108), rgb(50, 196, 91));
-    font-family: 'Open Sans', sans-serif;
-    height: 100vh;
-    margin:0;
+#burger-filter {
+    display: none;
 }
 
-.thumb {
-    width: 100%;
-    height: auto;
-    margin: 70px auto;
-    perspective: 1000px;
-}
+#design-burger {
 
-.thumb a {
     display: block;
-    width: 100%;
-    height: 100%;
-     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),  
-    background-color: rgb(27%, 80%, 93%);
-     url("https://media.giphy.com/media/iMcCUGuOM5j2w/giphy.gif"); 
-    background-size: 0, cover;
-    transform-style: preserve-3d;
-    transition: all 0.5s;
+    margin: auto;
 }
 
-.thumb:hover a {
-    transform: rotateX(80deg);
-    transform-origin: bottom;
+#filterButton {
+    float: right;
+    margin: 25px 20% 25px; 
 }
-.thumb a:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background: inherit;
-    background-size: cover, cover;
-    background-position: bottom;
-    transform: rotateX(90deg);
-    transform-origin: bottom;
+
+#input-box {
+ position: fixed;
+ z-index: 5;
+ width: 50%;
+ padding: 40px;
+ display: block;
+ border-radius: 15px;
+ overflow: auto;
+ margin: 7% 25%;
+ min-width: 360px;
+ background-color: rgb(255,255,255);
+ box-shadow: 1px 1px 8px #777;
+
 }
-.thumb a span {
-    color: white;
-    text-transform: uppercase;
-    position: absolute;
-    top: 100%;
-    left: -13%;
-    width: 100%;
-    font: bold 12px/36px "Open Sans";
+
+#modal-box {
+ position: fixed;
+ display: none;
+ width: 100%;
+ height: 100%;
+ z-index: 1;
+ background-color: rgba(255,255,255,.7);
+ overflow: auto;
+}
+
+#newBurgerButton {
+    height: 150px;
+
+    margin: 0px
+
+}
+
+#title {
+    width: 80%;
+    background: rgb(255, 255, 205);
+    margin: 30px auto 20px auto;
+    font-size: 1em;
+    overflow:auto;
+    border-radius: 15px;
     text-align: center;
-    transform: rotateX(-89.99deg);
-    transform-origin: top;
-    z-index: 1;
-}
-.thumb a:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 100px 50px rgba(0, 0, 0, 0.5);
-    transition: all 0.5s;
-    opacity: 0.15;
-    transform: rotateX(95deg) translateZ(-80px) scale(0.75);
-    transform-origin: bottom;
-}
 
-.thumb:hover a:before {
-    opacity: 1;
-    box-shadow: 0 0 25px 25px rgba(0, 0, 0, 0.5);
-    transform: rotateX(0) translateZ(-60px) scale(0.85);
+    box-shadow: 0px 0px 2px #999;
 }
- 
- */

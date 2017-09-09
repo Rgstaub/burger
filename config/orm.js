@@ -45,7 +45,7 @@ let orm = {
         id INT(10) NOT NULL AUTO_INCREMENT,
         date TIMESTAMP,
         devoured BOOLEAN DEFAULT false,
-        burger_name VARCHAR(128) NOT NULL,
+        burger_name VARCHAR(128) DEFAULT "Anonymous",
         bun VARCHAR(128) NOT NULL DEFAULT "Sesame Seed",
         patty VARCHAR(128) DEFAULT "Beef",
         pickles BOOLEAN DEFAULT false,
@@ -89,6 +89,8 @@ let orm = {
   }
 }
 
+//=============== Functions ==================
+
 let filterBuilder = (cols, vals) => {
   let query = "SELECT * FROM burgers WHERE ";
   for (let i = 0; i < cols.length; i++) {
@@ -117,7 +119,6 @@ let filterBuilder = (cols, vals) => {
   console.log(query);
   return query;
 }
-
 
 // Ship it
 module.exports = orm;

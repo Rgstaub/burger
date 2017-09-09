@@ -1,10 +1,14 @@
+// Add ingredients into this array to be included in dynamic forms
+// (needs to be updated seperately in the ORM)
 const FORM = [
   'burger_name', 'bun', 'patty', 'pickles', 'ketchup',
   'mustard', 'onions', 'cheese', 'tomato', 'bacon', 'lettuce',
   'special'
-]
+];
 
 $(document).ready(() => {
+
+//================== Event Listeners =======================
 
   $.get("/ingredients", function(response) {
     response.forEach( function(burger) {
@@ -12,49 +16,67 @@ $(document).ready(() => {
         var element = $('<li role="presentation"></li>');
         element.text(ingredient);
         $(`#${burger.id}`).append(element);
-      })
-    })
-  })
+      });
+    });
+  });
 
   // create an on click event for the burger image to 'eat' a burger
   $(document).on('click', '.clickable', function() {
     event.preventDefault();
     var id = $(this).data("id");
+    $('this').fadeOut('slow');
     // Post with a path that gives the Burger ID as a parameter ("/:id")
     $.post(`/_put/${id}`)
     location.reload();
-  })
+  });
+
+  $(document).on('click', '#modal-box', function() {
+    $('#modal-box').fadeOut('fast');
+  });
+
+  $(document).on('click', '#addButton', function() {
+    $('#modal-box').fadeOut('fast');
+  });
 
   // Listener for the button to clear the eaten burgers
   $(document).on('click', '#refreshButton', function() {
     event.preventDefault();
     $.post('/refresh');
     location.reload();
-  })
+  });
 
   $(document).on('click', '#clearButton', function() {
     event.preventDefault();
     $.post('/clear');
     location.reload();
+  });
+
+  $(document).on('click', '#input-box', function(e) {
+    e.stopPropagation();
+  });
+
+  $(document).on('click', '.filter', function() {
+    event.preventDefault();
+    $('#new-burger').hide();
+    $('#burger-filter').show();
+    $('#modal-box').fadeIn()
   })
 
-  // $(document).on('click', '#filterButton', function() {
-  //   event.preventDefault();
-  //   var url = urlBuilder();
-  //   $.post('/filter')
-  // })
+  $(document).on('click', '#newBurgerButton', function() {
+    $('#new-burger').show();
+    $('#burger-filter').hide();
+    $('#modal-box').fadeIn();
+  });
 
-  const urlBuilder = function() {
-    return console.log(`this will eventually return a URL for post`);
-  }
+//===================== Functions ==========================
 
-  //Build a new form with options
-// header={
+// Build a new form with options passed in as follows:
+// settings = {
     // action: "/", 
     // method: "post", 
     // type: "input", // "filter" to remove name field and toggle special
-    // parent: "input-box", 
-    // name: "add"
+    // parent: "input-box", // The ID of the element to attach to
+    // name: "add" // This will also be the text on the submit button
     // }
   const formBuilder = function(settings) {
     let formContainer = $(`<form action="${settings.action}" method="${settings.method}" class="form-inline"></form>`)
@@ -129,7 +151,6 @@ $(document).ready(() => {
         </div> `);
         formContainer.append(formSegment);
       }
-      
       else {
         let formSegment = $(`
         <div class="form-group">
@@ -140,27 +161,28 @@ $(document).ready(() => {
       }
     })
       let submitButton = $(`
-      <button id="${settings.name}Button" type="submit" class="btn">${settings.name}</button>
+      <button id="${settings.name}Button" type="submit" class="btn btn-lg">${settings.name}</button>
       `);
     
       formContainer.append(submitButton);
       $(`#${settings.parent}`).append(formContainer);  
-    
-  }
+  };
 
+  // Add a form to create new burgers
   formBuilder({
     action: "/", 
     method: "post", 
     type: "input", 
-    parent: "input-box", 
+    parent: "new-burger", 
     name: "add"
   });
 
+  // Add a form to filter on selected criteria
   formBuilder({
     action: "/filter",
     method: "post",
     type: "filter",
-    parent: "input-box",
+    parent: "burger-filter",
     name: "filter"
-  })
-})
+  });
+});

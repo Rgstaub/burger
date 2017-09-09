@@ -1,15 +1,47 @@
 <div class="container-fluid">
+  {{!-- The modal window used for the form --}}
   <div class="row">
-    <div id="input-box">
-
-      
-
-      <button id="refreshButton" class="btn">Refresh</button>
-      <button id="clearButton" class="btn">Clear</button>  
+    <div id="modal-box">
+      <div id="input-box">
+        <div id="new-burger">
+          
+          <img id="design-burger" src="assets/img/design_burger.jpg">
+          <div class="centered">Create Your Burger</div>
+          {{!-- New Burger form inserted here --}}
+        </div>
+        <div id="burger-filter">
+          {{!-- Filter results form inserted here --}}
+        </div>
+      </div>
     </div>
   </div>
+  <div class="dock">
+    <button id="refreshButton" class="btn">Reset Inventory</button>
+    <button id="clearButton" class="btn">Clear the Eaten</button> 
+  </div>
+  <div class="row">
+    <div class="filter">
+      <button id="filterButton">
+        Filter Results
+      </button>
+    </div>
+    <div id="title">
+      <div class="col-sm-8">
+        <h1>Eat-Da-Burger</h1>
+      </div>
+      <div class="col-sm-4">
+        <div class='burger-label'></div>
+        <img src="assets/img/flat_burger.jpg" id="newBurgerButton">
+        <div class='burger-label'>
+          Make a Burger! <span class="glyphicon glyphicon-hand-up"></span>
+
+        </div>
+      </div>
+    </div>
+  </div>  
   <div class="row">
     <div class="col-s-6" id="uneaten-box">
+      <h2>Click to Eat</h2>
       {{#each uneaten}}
         <div class="burger col-sm-6 col-lg-4 text-center">
           <img src="/assets/img/good_burger.png" class="uneaten-burger clickable" data-id="{{this.id}}" alt="Good Burger">
@@ -23,6 +55,7 @@
       {{/each}}
     </div>
     <div class="col-s-6" id="eaten-box">
+      <h2>Burgers Past</h2>
       {{#each eaten}}
         <div class="burger col-sm-6 col-lg-4">
           <img src="/assets/img/gone_burger.png" class="eaten-burger" data-id="{{this.id}}" alt="Good Burger">
@@ -35,6 +68,5 @@
         </div>
       {{/each}}
     </div>
-
   </div>
 </div>
