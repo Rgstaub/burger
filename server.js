@@ -3,7 +3,7 @@
 // Set up the app
 const express = require('express');
 const app = express();
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.use(express.static("public"));
 
 // Load body parsing package
@@ -23,6 +23,6 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Hey! Listen!
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 })
