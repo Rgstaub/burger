@@ -1,7 +1,11 @@
 const mysql = require('mysql');
 
 // Connection to the mySql database
-const db = mysql.createConnection({
+let db;
+
+if (process.env.JAWSDB_URL) {
+  db = mysql.createConnection(process.env.JAWSDB_URL)
+} else db = mysql.createConnection({
     multipleStatements: true,
     host: "localhost",
     user: "root",
