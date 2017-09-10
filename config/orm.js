@@ -38,9 +38,8 @@ let orm = {
   },
   // Reverts the database to its default data set
   refreshAll: () => {
-    let refreshStr = `DROP DATABASE IF EXISTS burger_db;
-      CREATE DATABASE burger_db;
-      USE burger_db;
+    let refreshStr = `use 'cw46d0g6qtfxggms';
+      DROP TABLE IF EXISTS burgers;
       CREATE TABLE burgers (
         id INT(10) NOT NULL AUTO_INCREMENT,
         date TIMESTAMP,
